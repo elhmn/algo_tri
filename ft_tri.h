@@ -13,5 +13,7 @@
 #ifndef FT_TRI_H
 #define FT_TRI_H
 
+void	tri_select(int *tab, int size);
+void	ft_putmap(int *tab);
 
 #endif

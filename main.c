@@ -14,11 +14,26 @@
 #include "stdlib.h"
 #include "ft_tri.h"
 
-int		main(int argc, char **argv)
+void	ft_putmap(int *tab)
 {
-	if (argc)
+	int	i;
+
+	i = 0;
+	while (i < 10)
 	{
-		printf("***test implementation d algo de tri, argv = %s***\n", *argv);
+		printf("[ %d ] ", tab[i]);
+		i++;
 	}
+	printf("\n");
+}
+
+int		main(void)
+{
+	int		tab[10] = {0, 3, 4, 87, 7, 4, -3, 6, -8};
+	printf("Avant le tri :\n");
+	ft_putmap(tab);
+	printf("Apres le tri :\n");
+	tri_select(tab, 10);
+	ft_putmap(tab);
 	return (0);
 }
