@@ -11,10 +11,14 @@
 /* ************************************************************************** */
 
 #include "ft_tri.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /*
 ** tri par selection
 */
+
+
 
 static void	ft_swap(int *a, int *b)
 {
@@ -65,7 +69,7 @@ void	tri_insert(int	*tab, int size)
 	while (i < size)
 	{
 		j = i;
-		if (tab[i] > tab[i + 1])
+		if (tab[i] > tab[i + 1] && i + 1 != size)
 		{
 			ft_swap(&tab[i], &tab[i + 1]);
 			while (j)
@@ -101,5 +105,68 @@ void	tri_bulle(int *tab, int size)
 		}
 		size--;
 	}
+}
+
+/*
+** tri par fusion : ici on scinde la liste en
+** deux sous liste a trier puis on les qu on
+** fusionne
+*/
+
+void	set_fusion(int *tab, int *tab1, int *tab2)
+{
+
+}
+
+void	set_fus_tab(int *tab, int *tab1, int pos, int size)
+{
+	int		i;
+
+	i = 0;
+	while (pos < size)
+		tab1[i++] = tab[pos++];
+}
+
+void	tri_fusion_aux(int *tab, int size, int stat)
+{
+	int		*tab1;
+	int		*tab2;
+
+	tab1 = malloc(sizeof(int) * size);
+	set_fus_tab(tab, tab1, 0, size * 2);
+	printf("Avant tab1 :\n");
+	ft_putmap(tab1, size);
+	tri_insert(tab1, size);
+	printf("Apres tab1 :\n");
+	ft_putmap(tab1, size);
+	if (!stat)
+	{
+		tab2 = malloc(sizeof(int) * size);
+		set_fus_tab(tab, tab2, size, (size * 2));
+		printf("Avant tab2 :\n");
+		ft_putmap(tab2, size);
+		tri_insert(tab2, size);
+		printf("Apres tab2 :\n");
+		ft_putmap(tab2, size);
+	}
+	else
+	{
+		tab2 = malloc(sizeof(int) * (size + 1));
+		set_fus_tab(tab, tab2, size, (size * 2) + 1);
+		printf("Avant tab2 :\n");
+		ft_putmap(tab2, size + 1);
+		tri_insert(tab2, size + 1);
+		printf("Apres tab2 :\n");
+		ft_putmap(tab2, size + 1);
+	}
+	//fusion
+}
+
+void	tri_fusion(int *tab, int size)
+{
+	if (size % 2)
+		tri_fusion_aux(tab, size / 2, 1);
+	else
+		tri_fusion_aux(tab, size / 2, 0);
 }
 
