@@ -113,6 +113,8 @@ void	tri_bulle(int *tab, int size)
 ** fusionne
 */
 
+//Penser a le faire fonctionner pour les tableaux de taille impaire
+
 void	set_fusion(int *tab, int *tab1, int *tab2, int size)
 {
 	int		i;
