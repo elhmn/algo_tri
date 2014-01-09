@@ -55,8 +55,8 @@ int		main(void)
 	settab(tab);
 	printf("Avant le tri :\n");
 	ft_putmap(tab, TEST_SIZE);
-	printf("Apres le tri :\n");
 	tri_fusion(tab, TEST_SIZE);
+	printf("Apres le tri :\n");
 	ft_putmap(tab, TEST_SIZE);
 	return (0);
 }
