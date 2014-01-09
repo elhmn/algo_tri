@@ -10,30 +10,51 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdio.h"
-#include "stdlib.h"
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "ft_tri.h"
+#define TEST_SIZE 100
+#define RANDMAX 50
+#define RANDMIN 0
 
 void	ft_putmap(int *tab)
 {
 	int	i;
 
 	i = 0;
-	while (i < 10)
+	while (i < TEST_SIZE)
 	{
 		printf("[ %d ] ", tab[i]);
+		if (!(i % 20))
+			printf("\n");
 		i++;
 	}
 	printf("\n");
 }
 
+void	settab(int *tab)
+{
+	int	i;
+
+	i = 0;
+	srand(time(NULL));
+	while (i < TEST_SIZE)
+	{
+		*(tab + i) = RANDMIN + rand() % (RANDMAX - RANDMIN);
+		i++;
+	}
+}
+
 int		main(void)
 {
-	int		tab[10] = {0, 3, 4, 87, 7, 4, -3, 6, -8};
+	int	tab[TEST_SIZE];
+
+	settab(tab);
 	printf("Avant le tri :\n");
 	ft_putmap(tab);
 	printf("Apres le tri :\n");
-	tri_select(tab, 10);
+	tri_bulle(tab, TEST_SIZE);
 	ft_putmap(tab);
 	return (0);
 }

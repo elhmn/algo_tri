@@ -15,5 +15,7 @@
 
 void	tri_select(int *tab, int size);
 void	ft_putmap(int *tab);
+void	tri_insert(int	*tab, int size);
+void	tri_bulle(int *tab, int size);
 
 #endif
