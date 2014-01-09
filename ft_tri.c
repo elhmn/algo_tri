@@ -113,43 +113,29 @@ void	tri_bulle(int *tab, int size)
 ** fusionne
 */
 
-//Penser a le faire fonctionner pour les tableaux de taille impaire
-
 void	set_fusion(int *tab, int *tab1, int *tab2, int size)
 {
 	int		i;
 	int		j;
-	int		*tmp;
 
-	tmp = tab;
 	i = 0;
 	j = 0;
-	while (j < size / 2 && i < size / 2)//(((j < size / 2 && size % 2) 
-			//	||(j < size / 2 + 1 && !(size % 2))))
+	while (i < size / 2 && ((j < size / 2 && !(size % 2))
+				|| (j < size / 2 + 1 && size % 2)))
 	{
 		if (tab1[i] < tab2[j])
 			*tab++ = tab1[i++];
 		else
 			*tab++ = tab2[j++];
-		ft_putmap(tmp, size);
 	}
-	printf("****************************\n");
-	if (j == size / 2)
-	{
+	if ((j == size / 2 && !(size % 2))
+				|| (j == size / 2 + 1 && size % 2))
 		while (i < size / 2)
-		{
 			*tab++ = tab1[i++];
-			ft_putmap(tmp, size);
-		}
-	}
 	else if (i == size / 2)
-	{
-		while (j < size / 2)
-		{
+		while ((j < size / 2 && !(size % 2))
+				|| (j < size / 2 + 1 && size % 2))
 			*tab++ = tab2[j++];
-			ft_putmap(tmp, size);
-		}
-	}
 }
 
 void	set_fus_tab(int *tab, int *tab1, int pos, int size)
@@ -168,31 +154,19 @@ void	tri_fusion_aux(int *tab, int size, int stat)
 
 	tab1 = malloc(sizeof(int) * size);
 	set_fus_tab(tab, tab1, 0, size * 2);
-	//printf("Avant tab1 :\n");
-	//ft_putmap(tab1, size);
 	tri_insert(tab1, size);
-	printf("Apres tab1 :\n");
-	ft_putmap(tab1, size);
 	if (!stat)
 	{
 		tab2 = malloc(sizeof(int) * size);
 		set_fus_tab(tab, tab2, size, (size * 2));
-		//printf("Avant tab2 :\n");
-	//	ft_putmap(tab2, size);
 		tri_insert(tab2, size);
-		printf("Apres tab2 :\n");
-		ft_putmap(tab2, size);
 		set_fusion(tab, tab1, tab2, size * 2);
 	}
 	else
 	{
 		tab2 = malloc(sizeof(int) * (size + 1));
 		set_fus_tab(tab, tab2, size, (size * 2) + 1);
-	//	printf("Avant tab2 :\n");
-	//	ft_putmap(tab2, size + 1);
 		tri_insert(tab2, size + 1);
-		printf("Apres tab2 :\n");
-		ft_putmap(tab2, size + 1);
 		set_fusion(tab, tab1, tab2, (size * 2) + 1);
 	}
 }

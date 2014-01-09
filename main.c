@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ft_tri.h"
-#define TEST_SIZE 9
+#define TEST_SIZE 8
 #define RANDMAX 10
 #define RANDMIN 0
 
